@@ -1,0 +1,120 @@
+<html>
+
+<head>
+  <title>Update Project</title>
+  <!-- Judulna -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../public/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!-- Navbar Start -->
+  <nav class="navbar sticky-top navbar-expand-md bg-nav">
+    <div class="container">
+      <a class="navbar-brand mx-4" href="#"><img src="../public/images/logo.png" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link me-3 ms-5" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-3" href="/project">Add Project</a>
+          </li>
+        </ul>
+        {{#if isLogin}}
+        <a class="nav-link me-5" href="#">Hello, {{user.name}}</a>
+        <a class="nav-link mx-2" href="/logout">Logout</a>
+        {{else}}
+        <a class="nav-link mx-4" href="/register">Register</a>
+        <a class="nav-link mx-2" href="/login">Login</a>
+        {{/if}}
+        <a class="btn btn-dark mx-4" href="/contact" target="_blank">Contact
+          Me</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Form Edit My Project -->
+  <div class="container d-flex justify-content-center">
+    <form action="/edit-project/{{id}}" method="POST">
+      <div>
+        <h1 class="text-center my-3">EDIT PROJECT</h1>
+      </div>
+      <div class="mb-3">
+        <label for="inputProjectName" class="form-label">Project Name</label>
+        <input type="text" class="form-control" id="inputProjectName" name="inputProjectName" value="{{edit.name}}" />
+      </div>
+      <div class="d-flex mb-3">
+        <div class="col-6 pe-1">
+          <label for="inputStartDate" class="form-label">Start Date</label>
+          <input type="date" class="form-control" id="inputStartDate" name="inputStartDate"
+            value="{{edit.start_date}}" />
+        </div>
+        <div class="col-6 ps-1">
+          <label for="inputEndDate" class="form-label">End Date</label>
+          <input type="date" class="form-control" id="inputEndDate" name="inputEndDate" value="{{edit.end_date}}" />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputDescription" class="form-label">Description</label>
+        <textarea class="form-control" id="inputDescription" name="inputDescription"
+          rows="3">{{edit.description}}</textarea>
+      </div>
+      <div class="mb-3">
+        <label>Technologies </label>
+        <div class="d-flex">
+          <div class="me-5">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="nodejs" id="node-js" name="nodejs" {{#if
+                edit.technologies.[0]}} checked {{/if}} />
+              <label class="form-check-label" for="node-js"> Node Js </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="reactjs" id="react-js" name="reactjs" {{#if
+                edit.technologies.[1]}} checked {{/if}} />
+              <label class="form-check-label" for="react-js">
+                React Js
+              </label>
+            </div>
+          </div>
+          <div class="ms-5">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="nextjs" id="next-js" name="nextjs" {{#if
+                edit.technologies.[2]}} checked {{/if}} />
+              <label class="form-check-label" for="next-js"> Next Js </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="typescript" id="typescript-js" name="typescript"
+                {{#if edit.technologies.[3]}} checked {{/if}} />
+              <label class="form-check-label" for="typescript-js">
+                Typescript Js
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="uploadImage" class="form-label">Upload Image</label>
+        <input class="form-control" type="file" accept="image/*" id="uploadImage" name="uploadImage" />
+      </div>
+      <button type="submit" class="btn btn-dark float-end"
+        onclick="return confirm('Are you sure to Save this Project?');">
+        Submit
+      </button>
+      <a href="/" class="btn btn-secondary float-end me-3">Cancel</a>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

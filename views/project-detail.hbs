@@ -1,0 +1,124 @@
+<html>
+
+<head>
+  <title>Detail Project</title>
+  <!-- Judulna -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../public/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav class="navbar sticky-top navbar-expand-md bg-nav">
+    <div class="container">
+      <a class="navbar-brand mx-4" href="#"><img src="../public/images/logo.png" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link me-3 ms-5" aria-current="page" href="/">Home</a>
+          </li>
+          {{#if isLogin}}
+          <li class="nav-item">
+            <a class="nav-link ms-3" href="/project">Add Project</a>
+          </li>
+          {{/if}}
+        </ul>
+        {{#if isLogin}}
+        <a class="nav-link me-5" href="#">Hello, {{user.name}}</a>
+        <a class="nav-link mx-2" href="/logout">Logout</a>
+        {{else}}
+        <a class="nav-link mx-4" href="/register">Register</a>
+        <a class="nav-link mx-2" href="/login">Login</a>
+        {{/if}}
+        <a class="btn btn-dark mx-4" href="/contact" target="_blank">Contact
+          Me</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Project Detail -->
+  <div class="container-fluid">
+    <div class="text-center mt-4">
+      <h1>{{this.name}}</h1>
+    </div>
+    <div class="container-fluid ms-2">
+      <div class="d-flex row container-fluid p-3">
+        <div class="col-md-8 px-3 py-3">
+          <div class="container-fluid">
+            <img src="../public/images/mycoding.jpg" class="rounded image-fluid mx-auto d-block" width="100%" alt=""
+              id="detail-image-project" />
+          </div>
+        </div>
+        <div class="col-md-4 px-4 py-3">
+          <div class="text-start">
+            <h3>Duration</h3>
+            <div>
+              <p class="fs-5">
+                <i class="fa-solid fa-calendar-days"></i>
+                {{this.startDate}}
+                <i><b> - </b></i>
+                {{this.endDate}}
+              </p>
+              <p class="fs-5">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                {{this.lengthDate.months}}
+                Bulan
+                {{this.lengthDate.days}}
+                Hari.
+              </p>
+            </div>
+            <h3>Technologies</h3>
+            <div class="d-flex row-cols-lg-2 flex-wrap ">
+
+              <span class="pe-2"><img src="/public/images/{{this.technologies.[0]}}.svg" class="me-2"
+                  alt="">{{this.technologies.[0]}}</span>
+              <span class="pe-2"><img src="/public/images/{{this.technologies.[1]}}.svg" class="me-2"
+                  alt="">{{this.technologies.[1]}}</span>
+              <span class="pe-2"><img src="/public/images/{{this.technologies.[2]}}.svg" class="me-2"
+                  alt="">{{this.technologies.[2]
+                }}</span>
+              <span><img src="/public/images/{{this.technologies.[3]}}.svg" class="me-2"
+                  alt="">{{this.technologies.[3]}}</span>
+
+              {{!-- <div class="col-6 fe-3">
+                <span><img src="/public/images/{{this.technologies.[0]}}.svg"
+                    alt="">{{this.technologies.[0]}}</span><br>
+                <span><img src="/public/images/{{this.technologies.[1]}}.svg" alt="">{{this.technologies.[1]}}</span>
+              </div>
+              <div class="ps-2 col-6 ">
+                <span><img src="/public/images/{{this.technologies.[2]}}.svg" alt="">{{this.technologies.[2]
+                  }}</span><br>
+                <span><img src="/public/images/{{this.technologies.[3]}}.svg" alt="">{{this.technologies.[3]}}</span>
+              </div> --}}
+
+              {{!-- <p><i class="fa-brands fa-react"></i> React Js</p>
+              <p><i class="fa-brands fa-js-square"></i> Javascript</p> --}}
+
+            </div>
+            {{!-- <div class="ps-4">
+              <p><i class="fa-brands fa-node-js"></i> Node Js</p>
+              <p><i class="fa-brands fa-html5"></i> Html5</p>
+            </div> --}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid text-justify px-5" style="text-align: justify">
+      <p>
+        {{this.description}}
+      </p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

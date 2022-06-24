@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>Register</title>
+    <!-- Judulna -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Navbar Start -->
+    <nav class="navbar sticky-top navbar-expand-md bg-nav">
+        <div class="container">
+            <a class="navbar-brand mx-4" href="#"><img src="../public/images/logo.png" alt="" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link me-3 ms-5" aria-current="page" href="/">Home</a>
+                    </li>
+                    {{#if isLogin}}
+                    <li class="nav-item">
+                        <a class="nav-link ms-3" href="/project">Add Project</a>
+                    </li>
+                    {{/if}}
+                </ul>
+                <a class="nav-link mx-4 active" href="/register">Register</a>
+                <a class="nav-link mx-2" href="/login">Login</a>
+                <a class="btn btn-dark mx-4" href="/contact" target="_blank">Contact
+                    Me</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Form Add My Project -->
+    <div class="container d-flex justify-content-center">
+        <form action="/register" method="POST">
+            <div>
+                <h3 class="text-center my-5"><b>REGISTER YOUR ACCOUNT</b></h3>
+            </div>
+            {{#if messages.danger}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{messages.danger}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/if}}
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="inputName" name="inputName" />
+            </div>
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="inputEmail" name="inputEmail" />
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword" name="inputPassword" />
+            </div>
+            <button type="submit" class="btn btn-dark float-end"> Submit </button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

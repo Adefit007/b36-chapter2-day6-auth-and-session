@@ -1,0 +1,157 @@
+<html>
+
+<head>
+  <title>Personal Web - Beranda</title>
+  <!-- Judulna -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../public/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!--  -->
+  <nav class="navbar sticky-top navbar-expand-md bg-nav">
+    <div class="container">
+      <a class="navbar-brand mx-4" href="#"><img src="../public/images/logo.png" alt="" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active mx-4" aria-current="page" href="#">Home</a>
+          </li>
+          {{#if isLogin}}
+          <li class="nav-item">
+            <a class="nav-link mx-4" href="/project">Add Project</a>
+          </li>
+          {{/if}}
+        </ul>
+        {{#if isLogin}}
+        <a class="nav-link me-5" href="#">Hello, {{user.name}}</a>
+        <a class="nav-link mx-2" href="/logout">Logout</a>
+        {{else}}
+        <a class="nav-link mx-4" href="/register">Register</a>
+        <a class="nav-link mx-2" href="/login">Login</a>
+        {{/if}}
+        <a class="btn btn-dark mx-4" href="/contact" target="_blank">Contact
+          Me</a>
+      </div>
+    </div>
+  </nav>
+  <!--  -->
+  <div class="container-fluid pt-3 p-5">
+    {{#if messages.success}}
+    <div class="text-center alert alert-success alert-dismissible fade show" role="alert">
+      {{messages.success}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+    <div class="container-fluid card my-3 shadow p-3 bg-body rounded">
+      <div class="row container-fluid">
+        <div class="col-lg-8 py-2 ps-5">
+          <div class="card-body container-fluid">
+            <h1 class="mt-2">Hi, Welcome to my Hut...!</h1>
+            <p class="text-justify card-text my-4 text-black-50">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
+              amet exercitationem corporis minus temporibus voluptate eaque
+              iure beatae ex suscipit facilis sapiente sequi veniam maxime in
+              magnam dolorem, neque tenetur assumenda. Inventore perferendis
+              fuga debitis pariatur deleniti consequatur maiores odio tempore
+              quas, sapiente autem corrupti modi magni laudantium ab alias
+              ipsam cum iure est blanditiis aliquam? Nesciunt cum illum alias?
+              Blanditiis vitae id dolores dolorem recusandae veritatis esse
+              quisquam quaerat.
+            </p>
+            <div class="mt-3">
+              <a class="btn btn-dark" href="https://web.whatsapp.com/">Contact</a>
+              <a href="https://id.linkedin.com" class="ms-4 text-decoration-none text-dark">Download CV
+                <i class="fa-solid fa-circle-arrow-down ms-2"></i></a>
+            </div>
+            <div class="mt-4">
+              <a href="https://facebook.com/" class="me-2" target="_blank"><img src="../public/images/fb.svg"
+                  alt="facebook" width="60px" height="60px" /></a>
+              <a href="https://instagram.com/" class="me-2" target="_blank"><img src="../public/images/ig.svg"
+                  alt="instagram" width="60px" height="60px" /></a>
+              <a href="https://id.linkedin.com/" class="me-2" target="_blank"><img src="../public/images/link.svg"
+                  alt="linkedin" width="60px" height="60px" /></a>
+              <a href="https://twitter.com/" class="me-2" target="_blank"><img src="../public/images/tw.svg"
+                  alt="twitter" width="60px" height="60px" /></a>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid col-lg-4 col-md-6 col-sm-8 py-4 px-4 text-center ps-5 py-5">
+          <div class="card align-items-center justify-content-center">
+            <img src="../public/images/my-image.jpg" class="profil img-fluid" alt="" />
+            <div class="card-body">
+              <h3 class="m-0">Ade Fitriana</h3>
+              <p class="card-text text-black-50 m-0">Fullstack Developer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- mY PROJEct -->
+  <div class="container-fluid bg-cream pt-3">
+    <h1 class="text-center text-dark my-3">My Project</h1>
+    <div class="py-4">
+      <div class="container">
+        <div class="row hidden-md-up">
+          {{#each dataProjects}}
+          <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card">
+              <div class="card-block p-2">
+                <img src="../public/images/mycoding.jpg" class="card-img-top rounded mx-auto d-block" alt="" /><a
+                  href="/project-detail/{{this.id}}" target="_blank" class="text-decoration-none text-dark">
+                  <h3 class="card-title my-1 mt-2 text-truncate">
+                    {{this.name}}
+                  </h3>
+                </a>
+                <h6 class="card-subtitle text-black-50 my-1 mb-3">
+                  Durasi :
+                  {{this.lengthDate.months}}
+                  Bulan,
+                  {{this.lengthDate.days}}
+                  Hari.
+                </h6>
+                <p class="deskripsi card-text px-2 text-truncate">
+                  <b>Description :</b>
+                  {{this.description}}
+                </p>
+                <h6 class="card-subtitle text-black-50 text-end">{{this.posting}}</h6>
+                <div>
+                  <img src="/public/images/{{this.technologies.[0]}}.svg" alt="">
+                  <img src="/public/images/{{this.technologies.[1]}}.svg" alt="">
+                  <img src="/public/images/{{this.technologies.[2]}}.svg" alt="">
+                  <img src="/public/images/{{this.technologies.[3]}}.svg" alt="">
+                </div>
+                {{#if isLogin}}
+                <div class="btn-group d-flex mt-3" role="group" aria-label="Basic example">
+                  <a href="/edit-project/{{this.id}}"
+                    onclick="return confirm('Do you Want to Change or Update This Project?');" target="_blank"
+                    class="btn btn-secondary" type="submit">Edit</a>
+                  <a href="/delete-project/{{this.id}}"
+                    onclick="return confirm('Are you sure to delete this Project?');" class="btn btn-secondary"
+                    type="submit">Delete</a>
+                </div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
